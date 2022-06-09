@@ -26,9 +26,7 @@ function metrosDelTerreno (){
         case "1":
             metrosDelTerreno();
         case "2":
-            eleccionTerreno()
-        case "3":
-            close()
+            eleccionTerreno();
         default:
             break;
     }
@@ -57,7 +55,7 @@ const terrenoChico = new terrenoPredefinido("terreno chico",10,20,200,"$ 4.000")
 const terrenoMediano = new terrenoPredefinido("terreno mediano",12,25,300,"$ 6.000")
 const terrenoGrande = new terrenoPredefinido("terreno grande",20,40,800,"$ 15.000")
 
-eleccionTerreno()
+
 
 function eleccionTerreno(){
     let terrenoElegido = prompt("Elija el que terreno que desea: \n1 - Terreno chico \n2 - Terreno mediano \n3 - Terreno grande")
