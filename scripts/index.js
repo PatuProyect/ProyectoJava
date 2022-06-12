@@ -40,7 +40,7 @@ function agregarCostos(){
     let costoTotal = costoTerreno + ((impuestos/100)*costoTerreno);
     alert ("El precio para " +metrosTotal+" m2 es: u$d " + costoTotal);
 }
-
+ */
 class terrenoPredefinido {
     constructor (nombre, mAncho,mLargo,mTotal,precio){
         this.nombre = nombre
@@ -54,7 +54,6 @@ class terrenoPredefinido {
 const terrenoChico = new terrenoPredefinido("terreno chico",10,20,200,"$ 4.000")
 const terrenoMediano = new terrenoPredefinido("terreno mediano",12,25,300,"$ 6.000")
 const terrenoGrande = new terrenoPredefinido("terreno grande",20,40,800,"$ 15.000")
-
 
 
 function eleccionTerreno(){
@@ -86,8 +85,11 @@ array.push(terrenoChico)
 array.push(terrenoGrande)
 array.push(terrenoMediano)
 
+let terrenosPequeños = array.filter((index)=>{
+    return index.mTotal <= "250"
+})
 
-
+console.log(terrenosPequeños)
 
 
 
