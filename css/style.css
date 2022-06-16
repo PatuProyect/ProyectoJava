@@ -1,0 +1,30 @@
+.imagenProducto{
+    height: 400px;
+    width: 400px;
+    border: solid 2px;
+    border-radius: 4px;
+}
+#conteiner{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.boxProducto{
+    background-color: #ccc;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 2px 3px 4px black;
+    transition: 0.3s;
+}
+
+#contenedorTitulo{
+    text-align: center;
+}
+.boxProducto button{
+    margin-bottom: 5px;
+}
+.boxProducto button:hover{
+    cursor: pointer;
+    transform: scale(1.05,1.05);
+}
