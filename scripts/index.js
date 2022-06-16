@@ -44,7 +44,7 @@ function mostrarProductos() {
         let details = document.createElement("p")
         details.innerText = (product.details)
         let buyButton = document.createElement("button")
-        buyButton.innerText = ("Conosca mas sobre este terreno")
+        buyButton.innerText = ("Agregar terreno")
         card.append(img, name, price, details, buyButton)
     })
 }
@@ -52,5 +52,3 @@ function mostrarProductos() {
 mostrarProductos()
 
 console.log(tiposTerrenos)
-
-
