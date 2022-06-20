@@ -5,6 +5,10 @@ let contenedorTitulo = document.getElementById("contenedorTitulo")
 let titulo = document.createElement("h1")
 titulo.innerHTML = "Bienvenido " + nombre.toUpperCase() + " a la venta de terrenos en Argentina"
 contenedorTitulo.append(titulo)
+const carritoLista = document.getElementById("carritoLista")
+const carro = document.getElementById("carrito")
+
+const terrenosComprados = [];
 
 const tiposTerrenos = [{
     id: "1",
@@ -30,25 +34,56 @@ const tiposTerrenos = [{
 }]
 
 function mostrarProductos() {
-    tiposTerrenos.forEach((product) => {
+    tiposTerrenos.forEach((terreno) => {
         let card = document.createElement("div")
         card.setAttribute("class", "boxProducto")
         conteiner.append(card)
         let img = document.createElement("img")
-        img.setAttribute("src", product.img)
+        img.setAttribute("src", terreno.img)
         img.setAttribute("class","imagenProducto")
         let name = document.createElement("h3")
-        name.innerText = (product.name)
+        name.innerText = (terreno.name)
         let price = document.createElement("p")
-        price.innerText = (product.price)
+        price.innerText = (terreno.price)
         let details = document.createElement("p")
-        details.innerText = (product.details)
+        details.innerText = (terreno.details)
         let buyButton = document.createElement("button")
         buyButton.innerText = ("Agregar terreno")
         card.append(img, name, price, details, buyButton)
+
+        buyButton.addEventListener("click",()=>{
+            terrenosComprados.push(terreno)
+            carritoLista.innerHTML = ""
+            carrito()
+        })  
     })
 }
-
 mostrarProductos()
 
-console.log(tiposTerrenos)
+function carrito(){
+    terrenosComprados.forEach((terreno)=>{
+        const listado = document.createElement('li')
+        listado.innerHTML += `
+        <img src="${terreno.img}">
+        <h3>${terreno.name}</h3>
+        <h3>$ ${terreno.price}</h3>
+        <button class="sacar" id=${terreno.id}>"Eliminar del Carrito"</button>`
+        carritoLista.appendChild(listado)
+    })
+    mostrarDetalle()
+    sumaTotal()
+}
+
+function sumaTotal () {
+    const subTotal = terrenosComprados.map(({price})=> price)
+    const acumular = (acumulador,price)=> acumulador + price;
+    let total = subTotal.reduce(acumular,0)
+    return total
+}
+
+function mostrarDetalle (){
+    const qTerrenos = document.getElementById("qTerrenos")
+    const qPrecio = document.getElementById("qPrecio")
+    qTerrenos.innerText = "Cantidad de terrenos: " + parseInt(terrenosComprados.length)
+    qPrecio.innerText = "Precio total: " + sumaTotal()
+}
