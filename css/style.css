@@ -29,14 +29,19 @@
     transform: scale(1.05,1.05);
 }
 
-.carritoLista, img{
+#carritoLista img{
     height: 100px;
     width: 100px;
 }
 
-.carritoLista, li{
+#carritoLista li{
     border: solid 1px;
     width: 200px;
     text-align: center;
     margin: 30px;
+}
+
+#carritoLista {
+    display: flex;
+    list-style: none;
 }

@@ -8,24 +8,24 @@ contenedorTitulo.append(titulo)
 const carritoLista = document.getElementById("carritoLista")
 const carro = document.getElementById("carrito")
 
-const terrenosComprados = [];
+let terrenosComprados = [];
 
 const tiposTerrenos = [{
-    id: "1",
+    id: 1,
     category: "terrenos",
     details: "Ancho 10mts \nAlto 20 mts \nM2 Total: 200",
     name: "Terreno Chico",
     price: 4000,
     img: "./assets/imagenes/productos/terrenochico.jpg",
 },{
-    id: "2",
+    id: 2,
     category: "terrenos",
     details: "Ancho 12mts \nAlto 25 mts \nM2 Total: 300",
     name: "Terreno Mediano",
     price: 6000,
     img: "./assets/imagenes/productos/terrenomediano.jpg"
 },{
-    id: "3",
+    id: 3,
     category: "terrenos",
     details: "Ancho 20 mts \nAlto 40 mts \nM2 Total: 800",
     name: "Terreno Grande",
@@ -55,24 +55,35 @@ function mostrarProductos() {
             terrenosComprados.push(terreno)
             carritoLista.innerHTML = ""
             carrito()
-        })  
+            
+        })
     })
 }
 mostrarProductos()
 
 function carrito(){
+    carritoLista.innerHTML = ""
+
     terrenosComprados.forEach((terreno)=>{
         const listado = document.createElement('li')
         listado.innerHTML += `
         <img src="${terreno.img}">
         <h3>${terreno.name}</h3>
-        <h3>$ ${terreno.price}</h3>
-        <button class="sacar" id=${terreno.id}>"Eliminar del Carrito"</button>`
+        <h3>$ ${terreno.price}</h3>`
         carritoLista.appendChild(listado)
+
+        const eliminarProducto = document.getElementById("vaciarCarrito")
+        eliminarProducto.addEventListener("click",()=>{
+                terrenosComprados = []
+                listado.innerHTML = ``
+                mostrarDetalle()
+                carrito()
+            })
     })
     mostrarDetalle()
     sumaTotal()
 }
+
 
 function sumaTotal () {
     const subTotal = terrenosComprados.map(({price})=> price)
@@ -87,3 +98,4 @@ function mostrarDetalle (){
     qTerrenos.innerText = "Cantidad de terrenos: " + parseInt(terrenosComprados.length)
     qPrecio.innerText = "Precio total: " + sumaTotal()
 }
+
