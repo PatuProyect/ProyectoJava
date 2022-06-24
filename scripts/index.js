@@ -80,6 +80,9 @@ function carrito(){
                 carrito()
             })
     })
+    localStorage.setItem("terrenosComprados",JSON.stringify(terrenosComprados))
+    let storage = localStorage.getItem("terrenosComprados")
+    console.log(JSON.parse(storage))
     mostrarDetalle()
     sumaTotal()
 }
